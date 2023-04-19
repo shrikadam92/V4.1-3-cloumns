@@ -2,7 +2,8 @@
 
 // This example listens for the onInstalled event and logs a message to the console.
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.local.set({ color: '#3aa757' }, function() {
-    console.log('The color is green.');
-  });
+    chrome.tabs.create({url: "popup.html"});
+  // Inject the sidebar into every webpage
+    chrome.tabs.executeScript(null, {file: 'popup.js'});
+    console.log('called popup.js');
 });
