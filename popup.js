@@ -1,12 +1,10 @@
 function injectSidebar() {
   const iframe = document.createElement('iframe');
-  iframe.src = chrome.extension.getURL('popup.html');
+ iframe.src = chrome.extension.getURL('popup.html');
   iframe.style.cssText = 'position:absolute;top:0;right:0;width:350px;height:100%;border:none;z-index:999999;overflow:hidden;';
   document.body.appendChild(iframe);
 }
-
 injectSidebar();
-
 
 function readXlsxFile(url) {
   return new Promise((resolve, reject) => {
