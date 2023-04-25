@@ -13,6 +13,7 @@ function readXlsxFile(url) {
     xhr.send();
   });
 }
+
 function showTemplates() {
   readXlsxFile('/templates.xlsx').then((rows) => {
     console.log(rows); // log the data to the console
@@ -25,7 +26,13 @@ function showTemplates() {
       const button1 = document.createElement('button');
       button1.innerText = rows[i][0];
       button1.addEventListener('click', () => {
-        navigator.clipboard.writeText(rows[i][1]);
+        // Get the active textbox element
+        const activeElement = document.activeElement;
+        if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+          activeElement.value += rows[i][1];
+        } else {
+          navigator.clipboard.writeText(rows[i][1]);
+        }
       });
       const td1 = document.createElement('td');
       td1.appendChild(button1);
@@ -36,7 +43,13 @@ function showTemplates() {
         const button2 = document.createElement('button');
         button2.innerText = rows[i + 1][0];
         button2.addEventListener('click', () => {
-          navigator.clipboard.writeText(rows[i + 1][1]);
+          // Get the active textbox element
+          const activeElement = document.activeElement;
+          if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+            activeElement.value += rows[i + 1][1];
+          } else {
+            navigator.clipboard.writeText(rows[i + 1][1]);
+          }
         });
         const td2 = document.createElement('td');
         td2.appendChild(button2);
@@ -48,7 +61,13 @@ function showTemplates() {
         const button3 = document.createElement('button');
         button3.innerText = rows[i + 2][0];
         button3.addEventListener('click', () => {
-          navigator.clipboard.writeText(rows[i + 2][1]);
+          // Get the active textbox element
+          const activeElement = document.activeElement;
+          if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+            activeElement.value += rows[i + 2][1];
+          } else {
+            navigator.clipboard.writeText(rows[i + 2][1]);
+          }
         });
         const td3 = document.createElement('td');
         td3.appendChild(button3);
@@ -62,8 +81,4 @@ function showTemplates() {
 
       table.appendChild(tr);
     }
-  })
-}
-
-
-showTemplates();
+ 
